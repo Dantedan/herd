@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+canvas{
+  position: absolute;
+  background: #111;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
