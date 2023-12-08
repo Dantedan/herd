@@ -1,127 +1,114 @@
-import React, { useRef, useEffect } from 'react';
+import Roulette from './Roulette'
 
 const App = () => {
-  const canvasRef = useRef(null);
-  let winner = 6;
   var options = [
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    "Fusce fermentum justo et odio accumsan, id cursus odio feugiat.",
-    "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
-    "Suspendisse potenti. Ut sit amet massa ac nulla pharetra euismod.",
-    "Vivamus in ligula vitae lacus cursus venenatis ut sit amet erat.",
-    "Quisque a diam nec nisl tincidunt feugiat non et nunc.",
-    "Proin tincidunt vestibulum quam, vel fringilla elit pellentesque ac.",
-    "Integer sed ipsum ac justo convallis convallis id nec mi.",
-    "Cras vehicula justo nec risus tincidunt, id venenatis arcu tincidunt.",
-    "Aliquam erat volutpat. Nam auctor ligula at lectus ultrices, nec hendrerit quam efficitur.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    "Fusce fermentum justo et odio accumsan, id cursus odio feugiat.",
-    "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
-    "Suspendisse potenti. Ut sit amet massa ac nulla pharetra euismod.",
-    "Vivamus in ligula vitae lacus cursus venenatis ut sit amet erat.",
-    "Quisque a diam nec nisl tincidunt feugiat non et nunc.",
-    "Proin tincidunt vestibulum quam, vel fringilla elit pellentesque ac.",
-    "Integer sed ipsum ac justo convallis convallis id nec mi.",
-    "Cras vehicula justo nec risus tincidunt, id venenatis arcu tincidunt.",
-    "Aliquam erat volutpat. Nam auctor ligula at lectus ultrices, nec hendrerit quam efficitur.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    "Fusce fermentum justo et odio accumsan, id cursus odio feugiat.",
-    "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
-    "Suspendisse potenti. Ut sit amet massa ac nulla pharetra euismod.",
-    "Vivamus in ligula vitae lacus cursus venenatis ut sit amet erat.",
-    "Quisque a diam nec nisl tincidunt feugiat non et nunc.",
-    "Proin tincidunt vestibulum quam, vel fringilla elit pellentesque ac.",
-    "Integer sed ipsum ac justo convallis convallis id nec mi.",
-    "Cras vehicula justo nec risus tincidunt, id venenatis arcu tincidunt.",
-    "Aliquam erat volutpat. Nam auctor ligula at lectus ultrices, nec hendrerit quam efficitur.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    "Fusce fermentum justo et odio accumsan, id cursus odio feugiat.",
-    "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
-    "Suspendisse potenti. Ut sit amet massa ac nulla pharetra euismod.",
-    "Vivamus in ligula vitae lacus cursus venenatis ut sit amet erat.",
-    "Quisque a diam nec nisl tincidunt feugiat non et nunc.",
-    "Proin tincidunt vestibulum quam, vel fringilla elit pellentesque ac.",
-    "Integer sed ipsum ac justo convallis convallis id nec mi.",
-    "Cras vehicula justo nec risus tincidunt, id venenatis arcu tincidunt.",
-    "Aliquam erat volutpat. Nam auctor ligula at lectus ultrices, nec hendrerit quam efficitur.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    "Fusce fermentum justo et odio accumsan, id cursus odio feugiat.",
-    "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
-    "Suspendisse potenti. Ut sit amet massa ac nulla pharetra euismod.",
-    "Vivamus in ligula vitae lacus cursus venenatis ut sit amet erat.",
-    "Quisque a diam nec nisl tincidunt feugiat non et nunc.",
-    "Proin tincidunt vestibulum quam, vel fringilla elit pellentesque ac.",
-    "Integer sed ipsum ac justo convallis convallis id nec mi.",
-    "Cras vehicula justo nec risus tincidunt, id venenatis arcu tincidunt.",
-    "Aliquam erat volutpat. Nam auctor ligula at lectus ultrices, nec hendrerit quam efficitur."
+    { name: "Una película de Disney", tags: ["película"] },
+    { name: "Una marca de autos", tags: ["marca"] },
+    { name: "Un deporte olímpico", tags: ["deporte"] },
+    { name: "Un actor o actriz ganador de un Oscar", tags: ["cine"] },
+    { name: "Un animal en peligro de extinción", tags: ["naturaleza"] },
+    { name: "Una serie de televisión famosa", tags: ["televisión"] },
+    { name: "Una marca de ropa deportiva", tags: ["moda"] },
+    { name: "Un pintor famoso", tags: ["arte"] },
+    { name: "Un líder histórico", tags: ["historia"] },
+    { name: "Una red social", tags: ["tecnología"] },
+    { name: "Un plato típico italiano", tags: ["comida"] },
+    { name: "Un libro clásico", tags: ["literatura"] },
+    { name: "Una serie animada para niños", tags: ["televisión"] },
+    { name: "Un superhéroe de Marvel", tags: ["cómic"] },
+    { name: "Una ciudad europea", tags: ["geografía"] },
+    { name: "Un postre", tags: ["comida"] },
+    { name: "Un equipo de fútbol europeo", tags: ["deporte"] },
+    { name: "Un director de cine", tags: ["cine"] },
+    { name: "Un dios de mitología griega", tags: ["historia"] },
+    { name: "Una serie de ciencia ficción", tags: ["televisión"] },
+    { name: "Una marca de zapatillas", tags: ["moda"] },
+    { name: "Una bebida no alcohólica", tags: ["bebida"] },
+    { name: "Un estilo artístico", tags: ["arte"] },
+    { name: "Una serie de dibujos animados clásica", tags: ["televisión"] },
+    { name: "Un presidente de Estados Unidos", tags: ["historia"] },
+    { name: "Una novela de ciencia ficción", tags: ["literatura"] },
+    { name: "Un monumento famoso", tags: ["historia"] },
+    { name: "Un plato típico de la cocina asiática", tags: ["comida"] },
+    { name: "Un actor de comedia", tags: ["cine"] },
+    { name: "Un animal marino", tags: ["naturaleza"] },
+    { name: "Un personaje de la mitología nórdica", tags: ["historia"] },
+    { name: "Un juego de mesa clásico", tags: ["juego"] },
+    { name: "Una serie de televisión de crimen/detectives", tags: ["televisión"] },
+    { name: "Un tipo de danza latinoamericana", tags: ["arte"] },
+    { name: "Una ciudad ficticia", tags: ["Ficcion"] },
+    { name: "Un supervillano de Marvel", tags: ["cómic"] },
+    { name: "Un equipo de superhéroes", tags: ["cómic"] },
+    { name: "Un mutante de X-Men", tags: ["cómic"] },
+    { name: "Una tira cómica", tags: ["cómic"] },
+    { name: "Un villano de Spider-Man", tags: ["cómic"] },
+    { name: "Un pelicula basada en un comic que no sea de DC o Marvel", tags: ["cómic"] },
+    { name: "Un objeto icónico de un cómic", tags: ["cómic"] },
+    { name: "Un evento crossover de cómics", tags: ["cómic"] },
+    { name: "Un supervillano de Batman", tags: ["cómic"] },
+    { name: "Un videojuego de estrategia en tiempo real (RTS)", tags: ["videojuego"] },
+    { name: "Un videojuego de mundo abierto", tags: ["videojuego"] },
+    { name: "Un videojuego de arcade", tags: ["videojuego"] },
+    { name: "Un videojuego de terror", tags: ["videojuego"] },
+    { name: "Un título de la saga Final Fantasy", tags: ["videojuego"] },
+    { name: "Un juego de ciencia ficción", tags: ["videojuego"] },
+    { name: "Un videojuego basado en una película o serie", tags: ["videojuego"] },
+    { name: "Un personaje de un videojuego de lucha", tags: ["videojuego"] },
+    { name: "Una provincia argentina", tags: ["geografía"] },
+    { name: "Una comida típica argentina", tags: ["comida"] },
+    { name: "Una película argentina", tags: ["cine"] },
+    { name: "Un lugar turístico en Argentina", tags: ["geografía"] },
+    { name: "Un feriado", tags: ["cultura"] },
+    { name: "Un equipo de fútbol argentino", tags: ["deporte"] },
+    { name: "Un manga de género shonen", tags: ["manga"] },
+    { name: "Un robot gigante", tags: ["manga"] },
+    { name: "Una raza ficticia", tags: ["ficcion"] },
+    { name: "Un arma legendaria", tags: ["ficcion"] },
+    { name: "Un planeta ficticio de un universo de ciencia ficción", tags: ["ficcion"] },
+    { name: "Una nave espacial famosa", tags: ["ficcion"] },
+    { name: "Un artefacto mágico de la literatura fantástica", tags: ["ficcion"] },
+    { name: "Una civilización alienígena ficticia", tags: ["ficcion"] },
+    { name: "Una obra de ficción distópica", tags: ["ficcion"] },
+    { name: "Un personaje androide de ficcion", tags: ["ficcion"] },
+    { name: "Un personaje con poderes psíquicos", tags: ["ficcion"] },
+    { name: "Un viajero en el tiempo", tags: ["ficcion"] },
+    { name: "Un animal mágico", tags: ["ficcion"] },
+    { name: "Un evento apocalíptico ficticio", tags: ["ficcion"] },
+    { name: "Un descubrimiento científico importante", tags: ["ciencia"] },
+    { name: "Un filósofo famoso", tags: ["filosofía"] },
+    { name: "Un movimiento artístico", tags: ["arte"] },
+    { name: "Una obra de teatro clásica", tags: ["teatro"] },
+    { name: "Un músico clásico", tags: ["música"] },
+    { name: "Un tipo de queso", tags: ["comida"] },
+    { name: "Una fruta tropical", tags: ["comida"] },
+    { name: "Una forma de decir mate sin decir mate", tags: ["comida"] },
+    { name: "Un juego de mesa que use dados", tags: ["comida"] },
+    { name: "Un juego de mesa que no use dados", tags: ["comida"] },
+    { name: "Un clásico del cine en blanco y negro", tags: ["cine"] },
+    { name: "Una película de ciencia ficción de los años 80", tags: ["cine"] },
+    { name: "Una película de terror", tags: ["cine"] },
+    { name: "Una película basada en hechos reales", tags: ["cine"] },
+    { name: "Una película animada de Pixar", tags: ["cine"] },
+    { name: "Una película de Quentin Tarantino", tags: ["cine"] },
+    { name: "Un musical", tags: ["cine"] },
+    { name: "Una película de animación japonesa (anime)", tags: ["cine"] },
+    { name: "Una película de comedia romántica", tags: ["cine"] },
+    { name: "Una de las 7 maravillas del mundo antiguo", tags: ["historia"] },
+    { name: "Un hueso del cuerpo humano", tags: ["anatomía"] },
+    { name: "Una cadena montañosa", tags: ["geografía"] },
+    { name: "Un continente", tags: ["geografía"] },
+    { name: "Una persona que este jugando este juego actualmente", tags: ["general"] },
+    { name: "Un animal prehistorico", tags: ["general"] },
+    { name: "Un elemento químico de la tabla periódica", tags: ["ciencia"] },
+    { name: "Una obra de teatro de Shakespeare", tags: ["teatro"] },
+    { name: "Un género musical", tags: ["música"] },
+    { name: "Un intérprete de jazz legendario", tags: ["música"] },
+
+    
+
+  
   ];
-  let scale = 50; // Font size and overall scale
-  let breaks = 0.001; // Speed loss per frame
-  let endSpeed = 0.0000001; // Speed at which the letter stops
-  let firstLetter = 360; // Number of frames until the first letter stops (60 frames per second)
-  let offset = -((1 + firstLetter) * (breaks * firstLetter + 2 * endSpeed)) / 2;
-  let offsetV = (endSpeed + breaks) * firstLetter;
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-
-    const resizeCanvas = () => {
-      canvas.width = canvas.clientWidth;
-      canvas.height = canvas.clientHeight;
-    };
-
-    resizeCanvas();
-
-    const loop = () => {
-      ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.globalAlpha = 1;
-      ctx.fillStyle = '#622';
-      ctx.fillRect(0, (canvas.height - scale) / 2, canvas.width, scale);
-      ctx.fillStyle = '#ccc';
-      ctx.textBaseline = 'middle';
-      ctx.textAlign = 'center';
-      ctx.setTransform(
-        1,
-        0,
-        0,
-        1,
-        Math.floor(canvas.width / 2),
-        Math.floor(canvas.height / 2)
-      );
-      let o = offset;
-      while (o < 0) o++;
-      o %= 1;
-      let h = Math.ceil(canvas.height / (2 * scale));
-      for (let j = -h; j < h; j++) {
-        let c = winner + j - Math.floor(offset);
-        while (c < 0) c += options.length;
-        c %= options.length;
-        let s = 1 - Math.abs(j + o) / (canvas.height / (2 * scale) + 1);
-        ctx.globalAlpha = s;
-        ctx.font = scale * s + 'px Helvetica';
-        ctx.fillText(options[c], scale, (j + o) * scale);
-      }
-      offset += offsetV;
-      offsetV -= breaks;
-      if (offsetV < endSpeed) {
-        offset = 0;
-        offsetV = 0;
-      }
-      requestAnimationFrame(loop);
-    };
-
-    window.addEventListener('resize', resizeCanvas);
-
-    requestAnimationFrame(loop);
-
-    return () => {
-      window.removeEventListener('resize', resizeCanvas);
-    };
-  }, [canvasRef]);
-
-  return <canvas ref={canvasRef} />;
+  return Roulette(options.map(o => o.name).sort(() => (Math.random() > .5) ? 1 : -1));
 };
 
 export default App;
